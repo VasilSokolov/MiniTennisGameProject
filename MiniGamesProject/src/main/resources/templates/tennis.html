@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Tennis</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li><a href="/">Home</a></li>
+	      <li class="active"><a href="/tennis">Tennis</a></li>
+	      <li><a href="#">Game 2</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	<div class="table-responsive col-md-4">
+	  	<table class="table table-bordered">
+		  	<thead>
+		      <tr>
+		        <th>Тennis Players</th>
+		        <th>Score</th>
+		        <th>Add Point</th>
+		      </tr>
+		    </thead>
+		    <tbody th:each="player : ${players}">
+			    <tr>
+			        <td class="col-md-2" th:text="${player.name}">...</td>
+			        <td class="col-md-2" th:text="${player.score}">...</td>			       
+			        <td class="col-md-2">
+			       		<a th:href="@{/score?(name=${player.name})}" th:if="${isGameContinuous}">+1</a>
+			        </td>
+			    </tr>
+			</tbody>   
+	  	</table>  
+		<p style="font-weight:bold" th:text="'Result ' + ${score}"></p>
+    </div>		
+</body>
+</html>
